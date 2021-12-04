@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Epreuve;
+use App\Entity\Etape;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Epreuve|null find($id, $lockMode = null, $lockVersion = null)
- * @method Epreuve|null findOneBy(array $criteria, array $orderBy = null)
- * @method Epreuve[]    findAll()
- * @method Epreuve[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Etape|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Etape|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Etape[]    findAll()
+ * @method Etape[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EpreuveRepository extends ServiceEntityRepository
+class EtapeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Epreuve::class);
+        parent::__construct($registry, Etape::class);
     }
 
     // /**
-    //  * @return Epreuve[] Returns an array of Epreuve objects
+    //  * @return Etape[] Returns an array of Etape objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class EpreuveRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Epreuve
+    public function findOneBySomeField($value): ?Etape
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')

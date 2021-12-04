@@ -27,6 +27,11 @@ class PhotoArticle
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="photos")
+     */
+    private $article;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class PhotoArticle
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
 
         return $this;
     }

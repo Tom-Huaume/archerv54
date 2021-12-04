@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LieuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,22 @@ class Lieu
      * @ORM\Column(type="boolean")
      */
     private $club;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="lieuDestination")
+     */
+    private $evenements;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="lieuDepart")
+     */
+    private $trajets;
+
+    public function __construct()
+    {
+        $this->evenements = new ArrayCollection();
+        $this->trajets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +172,66 @@ class Lieu
     public function setClub(bool $club): self
     {
         $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    public function addEvenement(Evenement $evenement): self
+    {
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
+            $evenement->setLieuDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenement(Evenement $evenement): self
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getLieuDestination() === $this) {
+                $evenement->setLieuDestination(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setLieuDepart($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getLieuDepart() === $this) {
+                $trajet->setLieuDepart(null);
+            }
+        }
 
         return $this;
     }

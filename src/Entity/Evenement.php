@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,28 @@ class Evenement
      * @ORM\Column(type="datetime")
      */
     private $dateHeureCreation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="evenements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieuDestination;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="evenement")
+     */
+    private $trajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Etape::class, mappedBy="evenement")
+     */
+    private $etapes;
+
+    public function __construct()
+    {
+        $this->trajets = new ArrayCollection();
+        $this->etapes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +195,78 @@ class Evenement
     public function setDateHeureCreation(\DateTimeInterface $dateHeureCreation): self
     {
         $this->dateHeureCreation = $dateHeureCreation;
+
+        return $this;
+    }
+
+    public function getLieuDestination(): ?Lieu
+    {
+        return $this->lieuDestination;
+    }
+
+    public function setLieuDestination(?Lieu $lieuDestination): self
+    {
+        $this->lieuDestination = $lieuDestination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getEvenement() === $this) {
+                $trajet->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Etape[]
+     */
+    public function getEtapes(): Collection
+    {
+        return $this->etapes;
+    }
+
+    public function addEtape(Etape $etape): self
+    {
+        if (!$this->etapes->contains($etape)) {
+            $this->etapes[] = $etape;
+            $etape->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtape(Etape $etape): self
+    {
+        if ($this->etapes->removeElement($etape)) {
+            // set the owning side to null (unless already changed)
+            if ($etape->getEvenement() === $this) {
+                $etape->setEvenement(null);
+            }
+        }
 
         return $this;
     }

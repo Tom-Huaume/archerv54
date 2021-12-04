@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\InscriptionEpreuve;
+use App\Entity\InscriptionEtape;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method InscriptionEpreuve|null find($id, $lockMode = null, $lockVersion = null)
- * @method InscriptionEpreuve|null findOneBy(array $criteria, array $orderBy = null)
- * @method InscriptionEpreuve[]    findAll()
- * @method InscriptionEpreuve[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method InscriptionEtape|null find($id, $lockMode = null, $lockVersion = null)
+ * @method InscriptionEtape|null findOneBy(array $criteria, array $orderBy = null)
+ * @method InscriptionEtape[]    findAll()
+ * @method InscriptionEtape[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class InscriptionEpreuveRepository extends ServiceEntityRepository
+class InscriptionEtapeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, InscriptionEpreuve::class);
+        parent::__construct($registry, InscriptionEtape::class);
     }
 
     // /**
-    //  * @return InscriptionEpreuve[] Returns an array of InscriptionEpreuve objects
+    //  * @return InscriptionEtape[] Returns an array of InscriptionEtape objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class InscriptionEpreuveRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?InscriptionEpreuve
+    public function findOneBySomeField($value): ?InscriptionEtape
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')

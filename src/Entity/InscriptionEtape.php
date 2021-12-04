@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\InscriptionEpreuveRepository;
+use App\Repository\InscriptionEtapeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=InscriptionEpreuveRepository::class)
+ * @ORM\Entity(repositoryClass=InscriptionEtapeRepository::class)
  */
-class InscriptionEpreuve
+class InscriptionEtape
 {
     /**
      * @ORM\Id
@@ -31,6 +31,18 @@ class InscriptionEpreuve
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $commentaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="inscriptionEtapes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $membre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Etape::class, inversedBy="inscriptionEtapes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $etape;
 
     public function getId(): ?int
     {
@@ -69,6 +81,30 @@ class InscriptionEpreuve
     public function setCommentaire(?string $commentaire): self
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): self
+    {
+        $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getEtape(): ?Etape
+    {
+        return $this->etape;
+    }
+
+    public function setEtape(?Etape $etape): self
+    {
+        $this->etape = $etape;
 
         return $this;
     }

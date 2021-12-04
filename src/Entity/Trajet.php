@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrajetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,34 @@ class Trajet
      * @ORM\Column(type="datetime")
      */
     private $dateHeureCreation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieuDepart;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $evenement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organisateur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationTrajet::class, mappedBy="trajet")
+     */
+    private $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +167,72 @@ class Trajet
     public function setDateHeureCreation(\DateTimeInterface $dateHeureCreation): self
     {
         $this->dateHeureCreation = $dateHeureCreation;
+
+        return $this;
+    }
+
+    public function getLieuDepart(): ?Lieu
+    {
+        return $this->lieuDepart;
+    }
+
+    public function setLieuDepart(?Lieu $lieuDepart): self
+    {
+        $this->lieuDepart = $lieuDepart;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        $this->evenement = $evenement;
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?Membre
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?Membre $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationTrajet[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(ReservationTrajet $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setTrajet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(ReservationTrajet $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getTrajet() === $this) {
+                $reservation->setTrajet(null);
+            }
+        }
 
         return $this;
     }
