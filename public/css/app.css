@@ -1,0 +1,179 @@
+/*_________BALISES_________*/
+h1 {
+    margin: 1rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 1rem;
+    text-align: center;
+}
+
+h3 {
+    margin: 1rem;
+}
+
+h4 {
+    margin: 1rem;
+}
+
+legend {
+    margin-top: 2rem;
+}
+
+footer{
+    margin-top: 10rem;
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+}
+
+/*_________CLASSES_________*/
+/*____effets spéciaux police____*/
+.letter-space{
+    letter-spacing: 15px;
+}
+
+.letter-glowy{
+    line-height: 0.70em;
+    outline: none;
+    text-shadow: 0 0 10px springgreen;
+    text-transform: uppercase;
+}
+
+.letter-glowy-anim{
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+    line-height: 0.70em;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: animate 5s linear infinite;
+}
+@keyframes animate
+{
+    0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+    {
+        color: #18BC9C;
+        text-shadow: none;
+    }
+    18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+    {
+        color: #C0EDE4;
+        text-shadow: 0 0 10px springgreen,
+        0 0 20px springgreen,
+        0 0 40px springgreen,
+        0 0 80px springgreen,
+        0 0 160px springgreen;
+
+    }
+}
+
+/*____liens____*/
+.disable-link{
+    text-decoration: none;
+}
+
+/*____navigation____*/
+.offset-left{
+    padding-left: 5rem;
+}
+
+/*____footer____*/
+.footer-mentions{
+    text-align: center;
+}
+
+/*____images____*/
+.logo-titre{
+    height: 150px;
+}
+
+.logo-small{
+    height: 120px;
+}
+
+/*____Tableau listing armes____*/
+.my-custom-scrollbar-arme {
+    position:relative;
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y-arme {
+    display: block;
+}
+
+/*____Tableau listing lieux____*/
+.my-custom-scrollbar-lieu {
+    position:relative;
+    width: 1000px;
+    height: 400px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y-lieu {
+    display: block;
+}
+
+/*____Formulaire lieux____*/
+.input-nom-lieu {
+    max-width: 25rem;
+}
+
+.input-rue-lieu {
+    max-width: 30rem;
+}
+
+.input-cp-lieu {
+    max-width: 5rem;
+}
+
+.input-ville-lieu {
+    max-width: 25rem;
+}
+
+/*____Formulaire Evenements____*/
+.input-nom-event {
+    max-width: 35rem;
+}
+
+.input-desc-event {
+    max-width: 37rem;
+    height: 8rem;
+}
+
+.input-duree-event {
+    max-width: 7rem;
+}
+
+.input-inscr-event {
+    max-width: 5rem;
+}
+
+.input-etat-event {
+    max-width: 10rem;
+}
+
+.input-prix-event {
+    max-width: 10rem;
+}
+
+.input-lieu-event {
+    max-width: 30rem;
+}
+
+/*____Messages flash____*/
+
+.flash{
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+}
+
+.flash-success{
+    color: green;
+}
+
+.flash-danger{
+    color: red;
+}
+

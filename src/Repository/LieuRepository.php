@@ -19,6 +19,20 @@ class LieuRepository extends ServiceEntityRepository
         parent::__construct($registry, Lieu::class);
     }
 
+    public function findHomeAddress()
+    {
+        //requete DQL
+        $entityManager = $this->getEntityManager();
+        $dql = "
+            SELECT l
+            FROM App\Entity\Lieu l
+            WHERE l.club = 1
+                ";
+        $query = $entityManager->createQuery($dql);
+
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Lieu[] Returns an array of Lieu objects
     //  */

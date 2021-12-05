@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Lieu | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+    <h4>Lieux sauvegardés</h4>
+
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">sexe</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Lat.</th>
+                    <th scope="col">N° de licence</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Catégorie d'age</th>
+                    <th scope="col">Licence</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <div>
+                <tbody>
+                {% for m in membres %}
+                    <tr>
+                        <td>{{ m.nom }}</td>
+                        <td>{{ m.prenom }}</td>
+                        <td>{{ m.sexe }}</td>
+                        <td>{{ m.email }}</td>
+                        <td>{{ m.lateralite }}</td>
+                        <td>{{ m.numLicence }}</td>
+                        <td>{{ m.dateNaissance |date('d/m/Y') }} </td>
+                        <td>{{ m.telMobile }} </td>
+                        <td>{{ m.categorieAge }} </td>
+                        <td>{{ m.typeLicence }} </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="#">Supprimer</a>
+                                {% if m.statutLicence == 1 %}
+                                    <a class="btn btn-sm btn-success" href="#">Actif</a>
+                                {% else %}
+                                    <a class="btn btn-sm btn-warning" href="#">Inactif</a>
+                                {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </div>
+        </table>
+
+
+{% endblock %}
