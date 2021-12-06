@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="container">
     {{ form_start(lieuForm) }}
 
     <h4>Lieux sauvegardés</h4>
@@ -39,31 +39,31 @@
                     <td>
                         <div class="form-group">
                             {{ form_widget(lieuForm.nom) }}
-                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.nom) }}</small>
+                            <small class="form-text text-muted">{{ form_errors(lieuForm.nom) }}</small>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             {{ form_widget(lieuForm.rue) }}
-                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue) }}</small>
+                            <small class="form-text text-muted">{{ form_errors(lieuForm.rue) }}</small>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             {{ form_widget(lieuForm.rue2) }}
-                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue2) }}</small>
+                            <small class="form-text text-muted">{{ form_errors(lieuForm.rue2) }}</small>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             {{ form_widget(lieuForm.codePostal) }}
-                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.codePostal) }}</small>
+                            <small class="form-text text-muted">{{ form_errors(lieuForm.codePostal) }}</small>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             {{ form_widget(lieuForm.ville) }}
-                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
+                            <small class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
                         </div>
                     </td>
                     <td>
@@ -78,5 +78,6 @@
     {{ form_end(lieuForm) }}
 
     <button class="btn btn-primary">Retour</button>
+</div>
 {% endblock %}
 

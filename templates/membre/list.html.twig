@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Lieu | {{ parent() }}
+    Membre | {{ parent() }}
 {% endblock %}
 
 {% block body %}
-
+<div class="container-fluid">
+    {{ form_start(membreForm) }}
 
     <h4>Membres</h4>
 
-        <table class="table table-bordered table-striped mb-0">
+        <table class="table table-bordered table-striped mb-0 small-font">
             <thead>
                 <tr>
                     <th scope="col">Nom</th>
@@ -17,11 +18,11 @@
                     <th scope="col">sexe</th>
                     <th scope="col">Email</th>
                     <th scope="col">Lat.</th>
-                    <th scope="col">N° de licence</th>
+                    <th scope="col">Licence</th>
                     <th scope="col">Date de naissance</th>
                     <th scope="col">Téléphone</th>
-                    <th scope="col">Catégorie d'age</th>
-                    <th scope="col">Licence</th>
+                    <th scope="col">Cat.</th>
+                    <th scope="col">Type de licence</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -40,19 +41,67 @@
                         <td>{{ m.categorieAge }} </td>
                         <td>{{ m.typeLicence }} </td>
                         <td>
-                            <a class="btn btn-sm btn-danger" href="#">Supprimer</a>
+                            <a class="btn btn-sm btn-info small-btn" href="#">Modifier</a>
+                            <a class="btn btn-sm btn-danger small-btn" href="{{ path('membre_delete', {'id' : m.id}) }}">Supprimer</a>
                                 {% if m.statutLicence == 1 %}
-                                    <a class="btn btn-sm btn-success" href="#">Actif</a>
+                                    <a class="btn btn-sm btn-success small-btn" href="#">Actif</a>
                                 {% else %}
-                                    <a class="btn btn-sm btn-warning" href="#">Inactif</a>
+                                    <a class="btn btn-sm btn-warning small-btn" href="#">Inactif</a>
                                 {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
+                {# formulire création #}
+                <tr>
+                    <td>
+                        {{ form_widget(membreForm.nom) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.nom) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.prenom) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.prenom) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.sexe) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.sexe) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.email) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.email) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.lateralite) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.lateralite) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.numLicence) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.numLicence) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.dateNaissance) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.dateNaissance) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.telMobile) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.telMobile) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.categorieAge) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.categorieAge) }}</small>
+                    </td>
+                    <td>
+                        {{ form_widget(membreForm.typeLicence) }}
+                        <small class="form-text text-muted">{{ form_errors(membreForm.typeLicence) }}</small>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary small-btn">Créer</button>
+                    </td>
+                </tr>
 
                 </tbody>
             </div>
         </table>
 
-
+        {{ form_end(membreForm) }}
+</div>
 {% endblock %}

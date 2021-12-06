@@ -33,40 +33,39 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <a href="https://lesarchersdeliffre.jimdofree.com/">
                         <img src="{{ asset('img/logo/logo.png') }}"
                              alt="logo du club" class="logo-titre">
                     </a>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <h1>Les archers de Liffré</h1>
                     <h2 class="text-success letter-space letter-glowy-anim">Espace membre</h2>
                 </div>
-                <div class="col-md-1">
-
+                <div class="col-md-2">
+                    {# Message flash #}
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash flash-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <br>
 
         {% include('inc/nav.html.twig') %}
-        {# Message flash #}
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="flash flash-{{ label }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
 
     </header>
 
-    <div class="container">
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-    </div>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
 
 
 

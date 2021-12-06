@@ -28,6 +28,19 @@ footer{
 }
 
 /*_________CLASSES_________*/
+/*____Tailles polices____*/
+.small-font{
+    font-size: 0.8em;
+}
+
+.medium-font{
+    font-size: 0.95em;
+}
+
+.small-btn{
+    font-size: 0.9em;
+}
+
 /*____effets spéciaux police____*/
 .letter-space{
     letter-spacing: 15px;
@@ -158,6 +171,35 @@ footer{
 
 .input-lieu-event {
     max-width: 30rem;
+}
+
+/*____Formulaire Membre____*/
+.input-numlic-membre{
+    width:6rem;
+}
+
+.input-date-membre{
+    width:8.5rem;
+}
+
+.input-tel-membre{
+    width:8rem;
+}
+
+.input-mail-membre{
+    width:15rem;
+}
+
+.input-nom-membre{
+    width:12rem;
+}
+
+.input-cat-membre{
+    width:7rem;
+}
+
+.input-type-membre{
+    width:15rem;
 }
 
 /*____Messages flash____*/

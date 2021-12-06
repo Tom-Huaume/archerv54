@@ -23,12 +23,13 @@ class LieuController extends AbstractController
         //afficher la liste des lieux
         $lieux = $lieuRepository->findAll();
 
-        //générer le formulaire de création
+        //générer le formulaire de création dans la vue
         $lieu = new Lieu();
         $lieuForm = $this->createForm(LieuType::class, $lieu);
 
         $lieuForm->handleRequest($request);
 
+        //traitement du formulaire
         if($lieuForm->isSubmitted() && $lieuForm->isValid()){
 
             $lieu->setClub(0);
@@ -45,8 +46,11 @@ class LieuController extends AbstractController
         ]);
     }
 
-    #[Route('/lieu/admin/delete/{id}', name: 'lieu_delete')]
-    public function delete(Lieu $lieu, EntityManagerInterface $entityManager): Response
+    #[Route('/admin/lieu/delete/{id}', name: 'lieu_delete')]
+    public function delete(
+        Lieu $lieu,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         //Supprime l'arme
         $entityManager->remove($lieu);
