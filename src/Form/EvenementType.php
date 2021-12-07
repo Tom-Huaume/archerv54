@@ -56,14 +56,7 @@ class EvenementType extends AbstractType
                 ]
             ])
 
-//            ->add('etat', TextType::class, [
-//                //'mapped' => false,
-//                'attr'=>[
-//                    'class'=>'form-control input-etat-event',
-//                ]
-//            ])
-
-            ->add('tarif', MoneyType::class, [
+            ->add('tarif', TextType::class, [
                 //'mapped' => false,
                 'attr'=>[
                     'class'=>'form-control input-prix-event',

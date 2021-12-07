@@ -58,4 +58,56 @@ class MembreController extends AbstractController
         $this->addFlash('danger', 'Membre supprimé');
         return $this->redirectToRoute('membre_list');
     }
+
+    #[Route('/admin/membre/activer/{id}', name:'membre_activate')]
+    public function activer(
+        int $id,
+        MembreRepository $membreRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $membre = $membreRepository->findOneBy(array('id' => $id));
+
+        if($membre->getStatutLicence() == false){
+            $membre->setStatutLicence(true);
+        } else {
+            $membre->setStatutLicence(false);
+        }
+
+        $entityManager->persist($membre);
+        $entityManager->flush();
+
+        $this->addFlash('info', 'Statut modifié');
+        return $this->redirectToRoute('membre_list');
+    }
+
+    #[Route('/admin/membre/modifier/{id}', name:'membre_update')]
+    public function modifier(
+        int $id,
+        MembreRepository $membreRepository,
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response
+    {
+
+        //générer le formulaire de modif dans la vue
+        $membre = $membreRepository->findOneBy(array('id' => $id));
+        $membreForm = $this->createForm(MembreType::class, $membre);
+        $membreForm->handleRequest($request);
+
+        if($membreForm->isSubmitted() && $membreForm->isValid()){
+
+            //MAJ BDD
+            $entityManager->persist($membre);
+            $entityManager->flush();
+
+            $this->addFlash('info', 'Profil modifié');
+            return $this->redirectToRoute('membre_list');
+        }
+
+
+        return $this->render('/admin/membre/profil.html.twig', [
+            'membreForm' => $membreForm->createView()
+        ]);
+    }
 }

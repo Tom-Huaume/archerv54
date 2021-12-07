@@ -9,8 +9,8 @@
     {{ form_start(membreForm) }}
 
     <h4>Membres</h4>
-
-        <table class="table table-bordered table-striped mb-0 small-font">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">Nom</th>
@@ -29,7 +29,7 @@
             <div>
                 <tbody>
                 {% for m in membres %}
-                    <tr>
+                    <tr data-href="{{ path('membre_update', {'id' : m.id}) }}">
                         <td>{{ m.nom }}</td>
                         <td>{{ m.prenom }}</td>
                         <td>{{ m.sexe }}</td>
@@ -41,13 +41,14 @@
                         <td>{{ m.categorieAge }} </td>
                         <td>{{ m.typeLicence }} </td>
                         <td>
-                            <a class="btn btn-sm btn-info small-btn" href="#">Modifier</a>
-                            <a class="btn btn-sm btn-danger small-btn" href="{{ path('membre_delete', {'id' : m.id}) }}">Supprimer</a>
-                                {% if m.statutLicence == 1 %}
-                                    <a class="btn btn-sm btn-success small-btn" href="#">Actif</a>
-                                {% else %}
-                                    <a class="btn btn-sm btn-warning small-btn" href="#">Inactif</a>
-                                {% endif %}
+                            <a class="btn btn-sm btn-danger small-btn trash-icon" href="{{ path('membre_delete', {'id' : m.id}) }}">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                            {% if m.statutLicence == 1 %}
+                                <a class="btn btn-sm btn-success small-btn" href="{{ path('membre_activate', {'id' : m.id}) }}">Actif</a>
+                            {% else %}
+                                <a class="btn btn-sm btn-warning small-btn" href="{{ path('membre_activate', {'id' : m.id}) }}">Inactif</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -101,7 +102,17 @@
                 </tbody>
             </div>
         </table>
-
+    </div>
         {{ form_end(membreForm) }}
 </div>
+
+    <script>
+
+    </script>
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

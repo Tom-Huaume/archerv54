@@ -60,6 +60,11 @@ class Etape
      */
     private $inscriptionEtapes;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbInscriptionsMax;
+
     public function __construct()
     {
         $this->inscriptionEtapes = new ArrayCollection();
@@ -180,6 +185,18 @@ class Etape
                 $inscriptionEtape->setEtape(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNbInscriptionsMax(): ?int
+    {
+        return $this->nbInscriptionsMax;
+    }
+
+    public function setNbInscriptionsMax(?int $nbInscriptionsMax): self
+    {
+        $this->nbInscriptionsMax = $nbInscriptionsMax;
 
         return $this;
     }

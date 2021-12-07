@@ -6,6 +6,8 @@ use App\Entity\Evenement;
 use App\Entity\Lieu;
 use App\Form\EvenementType;
 use App\Form\LieuType;
+use App\Repository\EtapeRepository;
+use App\Repository\EvenementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EvenementController extends AbstractController
 {
-    #[Route('/admin/evenement', name: 'evenement_create', methods: ['GET'])]
+    #[Route('/evenement/liste', name: 'evenement_list')]
+    public function list(
+        EvenementRepository $evenementRepository
+    ): Response
+    {
+
+        //générer le formulaire de création d'évènement
+        $evenements = $evenementRepository->findAll();
+
+        return $this->render('evenement/list.html.twig', [
+            'evenements' => $evenements,
+        ]);
+    }
+
+    #[Route('/admin/evenement/create', name: 'evenement_create')]
     public function create(
         Request $request,
         EntityManagerInterface $entityManager
@@ -58,13 +74,27 @@ class EvenementController extends AbstractController
     }
 
 
-    #[Route('/admin/evenement/{id}', name: 'evenement_detail', methods: ['GET'])]
+    #[Route('/evenement/{id}', name: 'evenement_detail')]
     public function detail(
-        Request $request,
-        EntityManagerInterface $entityManager
+        int $id,
+        EvenementRepository $evenementRepository,
+        EntityManagerInterface $entityManager,
+        Request $request
     ): Response
     {
-        return $this->render('evenement/create.html.twig', [
+        $evenement = $evenementRepository->findOneBy(array('id' => $id));
+        $etapes = $evenement->getEtapes();
+        $trajets = $evenement->getTrajets();
+
+
+        //MAJ BDD
+//            $entityManager->persist($membre);
+//            $entityManager->flush();
+
+        return $this->render('evenement/detail.html.twig', [
+            'evenement'=>$evenement,
+            'etapes'=>$etapes,
+            'trajets'=>$trajets
         ]);
     }
 

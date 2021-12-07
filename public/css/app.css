@@ -17,6 +17,11 @@ h4 {
     margin: 1rem;
 }
 
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
 legend {
     margin-top: 2rem;
 }
@@ -25,6 +30,10 @@ footer{
     margin-top: 10rem;
     padding-top: 8rem;
     padding-bottom: 5rem;
+}
+
+a{
+    text-decoration: none;
 }
 
 /*_________CLASSES_________*/
@@ -175,31 +184,56 @@ footer{
 
 /*____Formulaire Membre____*/
 .input-numlic-membre{
-    width:6rem;
+    max-width:6rem;
 }
 
 .input-date-membre{
-    width:8.5rem;
+    max-width:9rem;
 }
 
 .input-tel-membre{
-    width:8rem;
+    max-width:8rem;
 }
 
 .input-mail-membre{
-    width:15rem;
+    max-width:15rem;
 }
 
 .input-nom-membre{
-    width:12rem;
+    max-width:12rem;
 }
 
 .input-cat-membre{
-    width:7rem;
+    max-width:7rem;
 }
 
 .input-type-membre{
-    width:15rem;
+    max-width:16rem;
+}
+
+.input-lat-membre{
+    max-width:3rem;
+}
+
+.input-sexe-membre{
+    max-width:6rem;
+}
+
+/*____Evenements____*/
+.item-event{
+    max-width: 90rem;
+}
+
+.btn-event{
+    margin-bottom: 2rem;
+}
+
+.event-title{
+    margin-top: 2rem;
+}
+
+.event-card{
+    margin-top: 2rem;
 }
 
 /*____Messages flash____*/
@@ -209,6 +243,7 @@ footer{
     font-weight: bold;
     font-size: 1.4rem;
     margin: 1rem 0;
+    text-align: right;
 }
 
 .flash-success{
@@ -219,3 +254,10 @@ footer{
     color: red;
 }
 
+.flash-warning{
+    color: orange;
+}
+
+.flash-info{
+    color: royalblue;
+}

@@ -56,7 +56,7 @@ class MembreType extends AbstractType
 
             ->add('lateralite', ChoiceType::class, [
                 'attr'=>[
-                    'class'=>'form-control'
+                    'class'=>'form-control input-lat-membre'
                 ],
                 'choices'  => [
                     'D' => 'D',
@@ -66,7 +66,7 @@ class MembreType extends AbstractType
 
             ->add('sexe', ChoiceType::class, [
                 'attr'=>[
-                    'class'=>'form-control'
+                    'class'=>'form-control input-sexe-membre'
                 ],
                 'choices'  => [
                     'Homme' => 'Homme',
@@ -91,7 +91,7 @@ class MembreType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Membre::class,
+            'data_class' => Membre::class
         ]);
     }
 }
