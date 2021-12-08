@@ -22,68 +22,78 @@ class EvenementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-            //'mapped' => false,
+            ->add('lieuDestination', EntityType::class, [
+                'mapped' => false,
+                'class' => Lieu::class,
+                'label' => 'Lieu de l\'évènement',
+                'choice_label' => 'nom',
+                'placeholder' => '',
                 'attr'=>[
-                    'class'=>'form-control input-nom-event',
+                    'class'=>'form-select font-input input-lieu-event',
+                ]
+            ])
+
+            ->add('nom', TextType::class, [
+                'mapped' => false,
+                'label' => 'Quel titre voulez vous donner à votre évènement ?',
+                'attr'=>[
+                    'class'=>'form-control font-input',
                 ]
             ])
 
             ->add('description', TextareaType::class, [
-                //'mapped' => false,
+                'mapped' => false,
+                'label' => 'Décrivez votre évènement',
                 'attr'=>[
-                    'class'=>'form-control input-desc-event',
+                    'class'=>'form-control font-input-little',
+                    'placeholder'=>'(Facultatif)',
                 ]
             ])
 
             ->add('dateHeureDebut', DateTimeType::class, [
-                //'mapped' => false,
+                'mapped' => false,
+                'label' => 'Date et heure de début de l\'évènement',
                 'html5' => true,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'attr'=>[
+                    'class'=>'font-input',
+                ]
             ])
 
             ->add('dateHeureLimiteInscription', DateTimeType::class, [
-                //'mapped' => false,
+                'mapped' => false,
                 'html5' => true,
                 'widget' => 'single_text',
-
+                'attr'=>[
+                    'class'=>'font-input',
+                ]
             ])
 
             ->add('nbInscriptionsMax', IntegerType::class, [
-                //'mapped' => false,
+                'mapped' => false,
+                'label' => 'Nombre de places disponibles (facultatif)',
                 'attr'=>[
                     'class'=>'form-control input-inscr-event',
                 ]
             ])
 
             ->add('tarif', TextType::class, [
-                //'mapped' => false,
+                'mapped' => false,
+                'label' => 'Voulez-vous indiquer un prix ?',
                 'attr'=>[
-                    'class'=>'form-control input-prix-event',
+                    'class'=>'form-control font-input input-prix-event',
+                    'placeholder'=>'(Facultatif)',
                 ]
-            ])
-
-            ->add('dateHeureCreation', DateTimeType::class, [
-                //'mapped' => false,
-                'html5' => true,
-                'widget' => 'single_text',
-
             ])
 
             ->add('photo', FileType::class, [
-                //'mapped'=>false,
-                'label' => 'Photo',
+                'mapped'=>false,
+                'label' => 'Souhaitez-vous ajouter une photo ?',
                 'required' => false,
-
-            ])
-
-            ->add('lieuDestination', EntityType::class, [
-                'class' => Lieu::class,
-                'choice_label' => 'nom',
-                'placeholder' => '',
                 'attr'=>[
-                    'class'=>'form-select input-lieu-event',
+                    'class'=>'form-control font-input',
                 ]
+
             ])
         ;
     }

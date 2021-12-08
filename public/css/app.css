@@ -1,23 +1,21 @@
+@import url("forms.css");
+
 /*_________BALISES_________*/
-h1 {
+h1, h2 {
     margin: 1rem;
     text-align: center;
 }
 
-h2 {
-    margin: 1rem;
-    text-align: center;
+h3, h4, h5, h6 {
+
 }
 
-h3 {
-    margin: 1rem;
-}
+body{
 
-h4 {
-    margin: 1rem;
 }
 
 p {
+    /*font-family: 'Karla', sans-serif;*/
     margin: 0px;
     padding: 0px;
 }
@@ -58,8 +56,16 @@ a{
 .letter-glowy{
     line-height: 0.70em;
     outline: none;
+    text-transform: uppercase;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+}
+
+.letter-glowy:hover{
+    line-height: 0.70em;
+    outline: none;
     text-shadow: 0 0 10px springgreen;
     text-transform: uppercase;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
 }
 
 .letter-glowy-anim{
@@ -133,90 +139,6 @@ a{
 }
 .table-wrapper-scroll-y-lieu {
     display: block;
-}
-
-/*____Formulaire lieux____*/
-.input-nom-lieu {
-    max-width: 25rem;
-}
-
-.input-rue-lieu {
-    max-width: 30rem;
-}
-
-.input-cp-lieu {
-    max-width: 5rem;
-}
-
-.input-ville-lieu {
-    max-width: 25rem;
-}
-
-/*____Formulaire Evenements____*/
-.input-nom-event {
-    max-width: 35rem;
-}
-
-.input-desc-event {
-    max-width: 37rem;
-    height: 8rem;
-}
-
-.input-duree-event {
-    max-width: 7rem;
-}
-
-.input-inscr-event {
-    max-width: 5rem;
-}
-
-.input-etat-event {
-    max-width: 10rem;
-}
-
-.input-prix-event {
-    max-width: 10rem;
-}
-
-.input-lieu-event {
-    max-width: 30rem;
-}
-
-/*____Formulaire Membre____*/
-.input-numlic-membre{
-    max-width:6rem;
-}
-
-.input-date-membre{
-    max-width:9rem;
-}
-
-.input-tel-membre{
-    max-width:8rem;
-}
-
-.input-mail-membre{
-    max-width:15rem;
-}
-
-.input-nom-membre{
-    max-width:12rem;
-}
-
-.input-cat-membre{
-    max-width:7rem;
-}
-
-.input-type-membre{
-    max-width:16rem;
-}
-
-.input-lat-membre{
-    max-width:3rem;
-}
-
-.input-sexe-membre{
-    max-width:6rem;
 }
 
 /*____Evenements____*/

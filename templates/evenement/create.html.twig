@@ -6,99 +6,97 @@
 
 {% block body %}
 
-    <div class="container">
-        <h2>Evènements</h2>
+<div class="container-fluid">
 
-        {{ form_start(evenementForm) }}
-        <div class="form-group">
-            {{ form_label(evenementForm.nom) }}
-            {{ form_widget(evenementForm.nom) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nom) }}</small>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+
+            {{ form_start(evenementForm) }}
+            <div class="mt-3"></div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.lieuDestination) }}</p>
+                        <p>{{ form_widget(evenementForm.lieuDestination) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.lieuDestination) }}</small>
+                        <a href="" class="btn btn-success mt-2">Aucune de ces propositions</a>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question"> {{ form_label(evenementForm.nom) }}</p>
+                        <p>{{ form_widget(evenementForm.nom) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nom) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.description) }}</p>
+                        <p>{{ form_widget(evenementForm.description) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.description) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.dateHeureDebut) }}</p>
+                        <p>{{ form_widget(evenementForm.dateHeureDebut) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureDebut) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.dateHeureLimiteInscription) }}</p>
+                        <p>{{ form_widget(evenementForm.dateHeureLimiteInscription) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureLimiteInscription) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.nbInscriptionsMax) }}</p>
+                        <p>{{ form_widget(evenementForm.nbInscriptionsMax) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nbInscriptionsMax) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="form-group">
+                        <p class="mb-3 font-question">{{ form_label(evenementForm.tarif) }}</p>
+                        <p>{{ form_widget(evenementForm.tarif) }}</p>
+                        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.tarif) }}</small>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                        <div class="form-group">
+                            <p class="mb-3 font-question">{{ form_label(evenementForm.photo) }}</p>
+                            <p>{{ form_widget(evenementForm.photo) }}</p>
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.photo) }}</small>
+                        </div>
+                </div>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary btn-lg mt-3">Créer l'évènement</button>
+                    </div>
+
+            {{ form_end(evenementForm) }}
+
+                    <br>
+
+{#                    <div class="card bg-light mb-3">#}
+{#                        <div class="card-header">Lorem</div>#}
+{#                        <div class="card-body">#}
+{#                            <h4 class="card-title">Etape 1</h4>#}
+{#                            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit.#}
+{#                                Alias assumenda at autem corporis doloremque ea et exercitationem#}
+{#                                laboriosam maiores maxime necessitatibus nobis optio provident quasi#}
+{#                                recusandae reiciendis, rem repellat rerum, sapiente sit soluta vel#}
+{#                                voluptas voluptatem voluptatibus voluptatum. Ipsa, minus.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+
+{#            <button class="btn btn-primary">Ajouter une étape</button>#}
         </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.description) }}
-            {{ form_widget(evenementForm.description) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.description) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.dateHeureDebut) }}
-            {{ form_widget(evenementForm.dateHeureDebut) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureDebut) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.dateHeureLimiteInscription) }}
-            {{ form_widget(evenementForm.dateHeureLimiteInscription) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureLimiteInscription) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.nbInscriptionsMax) }}
-            {{ form_widget(evenementForm.nbInscriptionsMax) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nbInscriptionsMax) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.tarif) }}
-            {{ form_widget(evenementForm.tarif) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.tarif) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.dateHeureCreation) }}
-            {{ form_widget(evenementForm.dateHeureCreation) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureCreation) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.photo) }}
-            {{ form_widget(evenementForm.photo) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.photo) }}</small>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(evenementForm.lieuDestination) }}
-            {{ form_widget(evenementForm.lieuDestination) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.lieuDestination) }}</small>
-        </div>
-
-
-        <button class="btn btn-primary">Créer évènement</button>
-
-        {{ form_end(evenementForm) }}
-
-        <br>
-        <br>
-        <div class="card bg-light mb-3" style="max-width: 90rem;">
-            <div class="card-header">Lorem</div>
-            <div class="card-body">
-                <h4 class="card-title">Etape 1</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Alias assumenda at autem corporis doloremque ea et exercitationem
-                    laboriosam maiores maxime necessitatibus nobis optio provident quasi
-                    recusandae reiciendis, rem repellat rerum, sapiente sit soluta vel
-                    voluptas voluptatem voluptatibus voluptatum. Ipsa, minus.</p>
-            </div>
-        </div>
-
-        <div class="card bg-light mb-3" style="max-width: 90rem;">
-            <div class="card-header">Lorem</div>
-            <div class="card-body">
-                <h4 class="card-title">Etape 2</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Alias assumenda at autem corporis doloremque ea et exercitationem
-                    laboriosam maiores maxime necessitatibus nobis optio provident quasi
-                    recusandae reiciendis, rem repellat rerum, sapiente sit soluta vel
-                    voluptas voluptatem voluptatibus voluptatum. Ipsa, minus.</p>
-            </div>
-        </div>
-
-        <button class="btn btn-primary">Ajouter une étape</button>
+        <div class="col-md-3"></div>
     </div>
 
-
-
+</div>
 
 {% endblock %}
