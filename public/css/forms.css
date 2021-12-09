@@ -1,7 +1,6 @@
 /*____Formulaire général____*/
 .input-wrapper{
-    padding-top: 3rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 .fix-btn{
@@ -32,7 +31,7 @@
 }
 
 .font-input-little{
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: rgb(38, 38, 39);
     /*opacity: 0.25;*/
     height: 10rem;
@@ -48,14 +47,19 @@
     opacity: 0.35;
 }
 
+.font-input::placeholder{
+    color: rgb(38, 38, 39);
+    opacity: 0.35;
+}
+
 .input-wrapper:hover .form-group > p > * {
     color: #262627;
     /*opacity: 1;*/
 }
 
-.input-wrapper:hover .form-group > p > .font-input {
-    /*opacity: 1;*/
-}
+/*.input-wrapper:hover .form-group > p > .font-input {*/
+/*    opacity: 1;*/
+/*}*/
 
 /*.input-wrapper:hover .form-group > p {*/
 /*    color: #262627;*/
@@ -71,6 +75,9 @@
 /*    border-color: #6ad4bf;*/
 /*}*/
 
+#formLieu{
+    display: none;
+}
 
 /*____Formulaire lieux____*/
 .input-nom-lieu {

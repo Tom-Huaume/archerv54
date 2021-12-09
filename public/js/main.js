@@ -8,3 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 });
 
+//Montrer/masquer formulaire lieu
+function showHideLieu() {
+    let formLieu = document.getElementById("formLieu");
+    let labelLieu = document.getElementById("labelLieu");
+    let listLieu = document.getElementById("listLieu");
+    if (formLieu.style.display === "block") {
+        formLieu.style.display = "none";
+        labelLieu.style.display = "block";
+        listLieu.style.display = "block";
+    } else {
+        formLieu.style.display = "block";
+        labelLieu.style.display = "none";
+        listLieu.style.display = "none";
+    }
+}

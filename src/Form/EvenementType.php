@@ -24,6 +24,7 @@ class EvenementType extends AbstractType
         $builder
             ->add('lieuDestination', EntityType::class, [
                 'mapped' => false,
+                'required' => false,
                 'class' => Lieu::class,
                 'label' => 'Lieu de l\'évènement',
                 'choice_label' => 'nom',
@@ -35,7 +36,7 @@ class EvenementType extends AbstractType
 
             ->add('nom', TextType::class, [
                 'mapped' => false,
-                'label' => 'Quel titre voulez vous donner à votre évènement ?',
+                'label' => 'Quel titre voulez-vous donner à votre évènement ?',
                 'attr'=>[
                     'class'=>'form-control font-input',
                 ]
@@ -43,6 +44,7 @@ class EvenementType extends AbstractType
 
             ->add('description', TextareaType::class, [
                 'mapped' => false,
+                'required' => false,
                 'label' => 'Décrivez votre évènement',
                 'attr'=>[
                     'class'=>'form-control font-input-little',
@@ -71,7 +73,8 @@ class EvenementType extends AbstractType
 
             ->add('nbInscriptionsMax', IntegerType::class, [
                 'mapped' => false,
-                'label' => 'Nombre de places disponibles (facultatif)',
+                'required' => false,
+                'label' => 'Places disponibles',
                 'attr'=>[
                     'class'=>'form-control input-inscr-event',
                 ]
@@ -79,9 +82,10 @@ class EvenementType extends AbstractType
 
             ->add('tarif', TextType::class, [
                 'mapped' => false,
+                'required' => false,
                 'label' => 'Voulez-vous indiquer un prix ?',
                 'attr'=>[
-                    'class'=>'form-control font-input input-prix-event',
+                    'class'=>'form-control input-prix-event',
                     'placeholder'=>'(Facultatif)',
                 ]
             ])
@@ -94,6 +98,53 @@ class EvenementType extends AbstractType
                     'class'=>'form-control font-input',
                 ]
 
+            ])
+
+            //_____Formulaire ville_____
+            ->add('nomlieu', TextType::class, [
+                'mapped'=>false,
+                'required' => false,
+                'label' => 'Nom du lieu',
+                'attr'=>[
+                    'class'=>'form-control input-nom-lieu',
+                    'placeholder'=>'Ex : Club des archers de Janzé'
+                ]
+            ])
+
+            ->add('rue', TextType::class, [
+                'mapped'=>false,
+                'required' => false,
+                'label' => 'Rue',
+                'attr'=>[
+                    'class'=>'form-control input-rue-lieu',
+                ]
+            ])
+
+            ->add('rue2', TextType::class, [
+                'mapped'=>false,
+                'required' => false,
+                'attr'=>[
+                    'class'=>'form-control input-rue-lieu',
+                    'placeholder'=>'(Factultatif)'
+                ]
+            ])
+
+            ->add('codePostal', TextType::class, [
+                'mapped'=>false,
+                'required' => false,
+                'label' => 'Code postal',
+                'attr'=>[
+                    'class'=>'form-control input-cp-lieu',
+                ]
+            ])
+
+            ->add('ville', TextType::class, [
+                'mapped'=>false,
+                'required' => false,
+                'label' => 'Ville',
+                'attr'=>[
+                    'class'=>'form-control input-ville-lieu',
+                ]
             ])
         ;
     }

@@ -40,7 +40,7 @@ class Evenement
     private $dateHeureLimiteInscription;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbInscriptionsMax;
 
@@ -144,7 +144,7 @@ class Evenement
         return $this->nbInscriptionsMax;
     }
 
-    public function setNbInscriptionsMax(int $nbInscriptionsMax): self
+    public function setNbInscriptionsMax(?int $nbInscriptionsMax): self
     {
         $this->nbInscriptionsMax = $nbInscriptionsMax;
 

@@ -38,18 +38,57 @@ class EvenementController extends AbstractController
     {
 
         //générer le formulaire de création d'évènement
-        $evenement = new Evenement();
-        $evenementForm = $this->createForm(EvenementType::class, $evenement);
+
+        $evenementForm = $this->createForm(EvenementType::class, null);
         $evenementForm->handleRequest($request);
 
-        //générer le formulaire de création du lieu
-        $lieu = new Lieu();
-        $lieuForm = $this->createForm(LieuType::class, $lieu);
-        $lieuForm->handleRequest($request);
-
+        //Traitement du formulaire
         if($evenementForm->isSubmitted() && $evenementForm->isValid())
         {
+            //Etat ouvert par défaut
+
+
+            //Récupérer les données du formulaire evenement
+            $lieuDestination = $evenementForm["lieuDestination"]->getData();
+            $nom = $evenementForm["nom"]->getData();
+            $description = $evenementForm["description"]->getData();
+            $dateHeureDebut = $evenementForm["dateHeureDebut"]->getData();
+            $dateHeureLimiteInscription = $evenementForm["dateHeureLimiteInscription"]->getData();
+            $nbInscriptionsMax = $evenementForm["nbInscriptionsMax"]->getData();
+            $tarif = $evenementForm["tarif"]->getData();
+            $photo = $evenementForm["photo"]->getData();
+
+            //Créer objet evenement
+            $evenement = new Evenement();
+            $evenement->setNom($nom);
+            $evenement->setDescription($description);
+            $evenement->setDateHeureDebut($dateHeureDebut);
+            $evenement->setDateHeureLimiteInscription($dateHeureLimiteInscription);
+            $evenement->setNbInscriptionsMax($nbInscriptionsMax);
+            $evenement->setTarif($tarif);
+            $evenement->setPhoto($photo);
             $evenement->setEtat("ouvert");
+            $evenement->setDateHeureCreation(new \DateTime('now'));
+
+//            if($lieuDestination == null){
+//                //Récupérer les données du formulaire lieu
+//                $nomlieu = $evenementForm["nomlieu"]->getData();
+//                $rue = $evenementForm["rue"]->getData();
+//                $rue2 = $evenementForm["rue2"]->getData();
+//                $codePostal = $evenementForm["codePostal"]->getData();
+//                $ville = $evenementForm["ville"]->getData();
+//
+//                //Construire objet lieu
+//                $lieu = new Lieu();
+//                $lieu->setNom($nomlieu);
+//                $lieu->setRue();
+//                $lieu->setNom($nomlieu);
+//                $lieu->setNom($nomlieu);
+//                $lieu->setNom($nomlieu);
+//            }
+
+            //Persister les données
+            dd($evenement);
             $entityManager->persist($evenement);
             $entityManager->flush();
 
@@ -57,20 +96,11 @@ class EvenementController extends AbstractController
             return $this->redirectToRoute('evenement_create');
         }
 
-        if($lieuForm->isSubmitted() && $lieuForm->isValid()){
-
-            $lieu->setClub(0);
-            $entityManager->persist($lieu);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Lieu engristré');
-            return $this->redirectToRoute('evenement_create');
-        }
 
         return $this->render('evenement/create.html.twig', [
             'evenementForm' => $evenementForm->createView(),
-            'lieuForm' => $lieuForm->createView(),
         ]);
+
     }
 
 
