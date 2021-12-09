@@ -38,7 +38,6 @@ class AdminController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstrac
             $entityManager->persist($arme);
             $entityManager->flush();
             $this->addFlash('success', 'Enregistré !');
-
             return $this->redirectToRoute('admin_general');
         }
 

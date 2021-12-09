@@ -23,3 +23,17 @@ function showHideLieu() {
         listLieu.style.display = "none";
     }
 }
+
+//Montrer/masquer formulaire etape
+function showHideDiv() {
+    let formToHide = document.getElementById("formToHide");
+    let btnToHide = document.getElementById("btnToHide");
+    if (formToHide.style.display === "block") {
+        formToHide.style.display = "none";
+        btnToHide.style.display = "block";
+    } else {
+        formToHide.style.display = "block";
+        btnToHide.style.display = "none";
+        // btnToHide.innerText = "Annuler";
+    }
+}

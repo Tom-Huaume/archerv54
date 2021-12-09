@@ -58,7 +58,7 @@
                         </div>
                         <div class="col d-md-flex justify-content-md-end">
                             <div>
-                                <button type="button" class="btn btn-dark m-1">S'inscrire</button>
+                                <button type="button" class="btn btn-dark m-1 btn-contrast-primary">S'inscrire</button>
                             </div>
                         </div>
                     </div>
@@ -67,8 +67,48 @@
             </div>
             {% endfor %}
 
+            {{ form_start(etapeForm) }}
+            <div id="formToHide" class="card border-primary m-3" style="max-width: 70rem; display: none;">
+                <h4 class="card-header">Nouvelle étape
+                </h4>
+                <div class="card-body">
+
+
+
+                    {{ form_label(etapeForm.nom) }}
+                    {{ form_widget(etapeForm.nom) }}
+                    {{ form_label(etapeForm.description) }}
+                    {{ form_widget(etapeForm.description) }}
+                    <div class="row">
+                        <div class="col">
+                        {{ form_label(etapeForm.arme) }}
+                        {{ form_widget(etapeForm.arme) }}
+                        </div>
+                        <div class="col">
+                        {{ form_label(etapeForm.tarif) }}
+                        {{ form_widget(etapeForm.tarif) }}
+                        </div>
+                        <div class="col">
+                        {{ form_label(etapeForm.nbInscriptionsMax) }}
+                        {{ form_widget(etapeForm.nbInscriptionsMax) }}
+                        </div>
+                        <div class="col">
+                        {{ form_label(etapeForm.dateHeureDebut) }}
+                        {{ form_widget(etapeForm.dateHeureDebut) }}
+                        </div>
+                    </div>
+
+                    <div class="d-md-flex justify-content-md-end">
+                            <div type="button" class="btn btn-secondary m-1" onClick="showHideDiv();">Annuler</div>
+                            <button class="btn btn-primary m-1">Créer</button>
+                    </div>
+
+                </div>
+            </div>
+            {{ form_end(etapeForm) }}
+
             <div class="d-flex align-items-center justify-content-center">
-                <button type="button" class="btn btn-primary m-3">Ajouter une étape</button>
+                <button id="btnToHide" type="button" value="" class="btn btn-primary m-3" onClick="showHideDiv();">Ajouter une étape</button>
             </div>
 
         </div>
@@ -123,8 +163,27 @@
 
         {% endfor %}
 
+
+        <div class="card border-success mb-3" style="max-width: 90rem;">
+            <div class="card-header d-inline">
+                    <p>Nouveau trajet</p>
+            </div>
+            <div class="card-body">
+                {{ form_start(trajetForm) }}
+                {{ form_widget(trajetForm) }}
+                <button>Créer</button>
+                {{ form_end(trajetForm) }}
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="d-flex align-items-center justify-content-center">
-            <button type="button" class="btn btn-success">Proposer un covoiturage</button>
+            <button type="button" class="btn btn-success pastel">Proposer un covoiturage</button>
         </div>
 
 
@@ -147,4 +206,6 @@
 
 {% endblock %}
 
-
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

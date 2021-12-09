@@ -8,11 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EtapeController extends AbstractController
 {
-    #[Route('/etape', name: 'etape')]
+    #[Route('/etape/create', name: 'etape')]
     public function index(): Response
     {
-        return $this->render('etape/index.html.twig', [
-            'controller_name' => 'EtapeController',
+        return $this->render('etape/create.html.twig', [
         ]);
     }
 }

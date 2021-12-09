@@ -18,6 +18,7 @@ class MembreType extends AbstractType
     {
         $builder
             ->add('numLicence', TextType::class, [
+                'required' => false,
                 'attr'=>[
                     'class'=>'form-control input-numlic-membre'
                 ]

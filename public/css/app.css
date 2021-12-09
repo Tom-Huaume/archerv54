@@ -48,7 +48,11 @@ a{
     font-size: 0.9em;
 }
 
-/*____effets spéciaux police____*/
+/*____effets spéciaux____*/
+.pastel{
+    opacity: 0.9;
+}
+
 .letter-space{
     letter-spacing: 15px;
 }
