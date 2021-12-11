@@ -48,9 +48,42 @@ a{
     font-size: 0.9em;
 }
 
+.font-admin{
+    color: #CF5B38;
+}
+
+/*____Bouton admin____*/
+.btn-admin-wrapper{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-admin{
+    color: #DCF1ED;
+    background-color: #CF5B38;
+    border-color: #ab4b2e;
+}
+
+.btn-admin:hover{
+    color: #DCF1ED;
+    background-color: #ab4b2e;
+    border-color: #ab4b2e;
+}
+
+
 /*____effets spéciaux____*/
 .pastel{
     opacity: 0.9;
+}
+
+.pastel2{
+    opacity: 0.8;
+}
+
+.bg-green-pastel{
+    background-color: #DCF1ED;
 }
 
 .letter-space{

@@ -25,15 +25,42 @@ function showHideLieu() {
 }
 
 //Montrer/masquer formulaire etape
-function showHideDiv() {
-    let formToHide = document.getElementById("formToHide");
-    let btnToHide = document.getElementById("btnToHide");
-    if (formToHide.style.display === "block") {
-        formToHide.style.display = "none";
-        btnToHide.style.display = "block";
+function showHideEtape() {
+    let etapeToHide = document.getElementById("etapeToHide");
+    let btnEtapeToHide = document.getElementById("btnEtapeToHide");
+    if (etapeToHide.style.display === "block") {
+        etapeToHide.style.display = "none";
+        btnEtapeToHide.style.display = "block";
     } else {
-        formToHide.style.display = "block";
-        btnToHide.style.display = "none";
+        etapeToHide.style.display = "block";
+        btnEtapeToHide.style.display = "none";
         // btnToHide.innerText = "Annuler";
     }
 }
+
+//Montrer/masquer formulaire trajet
+function showHideTrajet() {
+    let trajetToHide = document.getElementById("trajetToHide");
+    let btnTrajetToHide = document.getElementById("btnTrajetToHide");
+    if (trajetToHide.style.display === "block") {
+        trajetToHide.style.display = "none";
+        btnTrajetToHide.style.display = "block";
+    } else {
+        trajetToHide.style.display = "block";
+        btnTrajetToHide.style.display = "none";
+        // btnToHide.innerText = "Annuler";
+    }
+}
+
+//Afficher/masquer les champs lieuDépart d'un trajet
+let selectElem = document.getElementById('trajet_clubDefaut');
+
+// Quand une nouvelle <option> est selectionnée
+selectElem.addEventListener('change', function() {
+    let lieuToHide = document.getElementById("lieuToHide");
+    if (lieuToHide.style.display === "block") {
+        lieuToHide.style.display = "none";
+    } else {
+        lieuToHide.style.display = "block";
+    }
+})

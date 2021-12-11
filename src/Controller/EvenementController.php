@@ -9,6 +9,7 @@ use App\Entity\Membre;
 use App\Entity\Trajet;
 use App\Form\EtapeType;
 use App\Form\EvenementType;
+use App\Form\InscriptionEtapeType;
 use App\Form\LieuType;
 use App\Form\TrajetType;
 use App\Repository\EtapeRepository;
@@ -93,6 +94,11 @@ class EvenementController extends AbstractController
                 $lieu->setCodePostal($codePostal);
                 $lieu->setVille($ville);
                 $lieu->setClub(0);
+                $lieu->setList(1);
+
+                $entityManager->persist($lieu);
+                //$entityManager->flush();
+
                 $lieuDestination = $lieu;
             }
 
@@ -137,21 +143,22 @@ class EvenementController extends AbstractController
         Request $request
     ): Response
     {
-        //Générer le formulaire de création d'étape
+        //Générer le formulaire étape
         $etape = new Etape();
         $etapeForm = $this->createForm(EtapeType::class, $etape);
         $etapeForm->handleRequest($request);
 
-        //Générer le formulaire de création de trajet
+        //Générer le formulaire trajet
         $trajet = new Trajet();
         $trajetForm = $this->createForm(TrajetType::class, $trajet);
         $trajetForm->handleRequest($request);
 
-        //Requêtes BDD
+        //Récupérer l'entité évènement à traiter + étapes et trajets associés
         $evenement = $evenementRepository->findOneBy(array('id' => $id));
         $etapes = $evenement->getEtapes();
         $trajets = $evenement->getTrajets();
 
+        //Traitement du formulaire étape
         if($etapeForm->isSubmitted() && $etapeForm->isValid()){
 
             //Ajouter champs manquants
@@ -165,29 +172,68 @@ class EvenementController extends AbstractController
             return $this->redirectToRoute('evenement_detail', ['id' => $id]);
         }
 
+        //Traitement du formulaire trajet
         if($trajetForm->isSubmitted() && $trajetForm->isValid()){
 
             //Ajouter champs manquants
             $trajet->setDateHeureCreation(new \DateTime());
             $trajet->setEvenement($evenement);
-            //____A MODIFIER____!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // todo: modifier l'organisateur par défaut
             $organisateurProvisoire = $membreRepository->findOneBy(array('id' => 1));
             $trajet->setOrganisateur($organisateurProvisoire);
 
-            //Récupérer données non mappées
+            //Récupérer adresse du club
             $adresseClub = $lieuRepository->findOneBy(array('club' => 1));
-            $lieuDepart = $trajetForm["lieuDepart"]->getData();
 
-            //Défini l'adresse du club par défaut
-            if($lieuDepart == null){
-                $trajet->setLieuDepart($adresseClub);
+            //Récupérer le choix de la liste déroulante (Adresse départ)
+            $clubDefaut = $trajetForm["clubDefaut"]->getData();
+            $trajet->setLieuDepart($adresseClub);
+
+            //Si l'adresse du club par défaut n'est pas choisie on prends les champs saisis par l'utilisateur
+            if($clubDefaut == false){
+
+                //Récupérer données lieu non mappées
+                $nomLieuDepart = $trajetForm["nomLieuDepart"]->getData();
+                $rueLieuDepart = $trajetForm["rueLieuDepart"]->getData();
+                $rue2LieuDepart = $trajetForm["rue2LieuDepart"]->getData();
+                $codePostalLieuDepart = $trajetForm["codePostalLieuDepart"]->getData();
+                $villeLieuDepart = $trajetForm["villeLieuDepart"]->getData();
+
+                //Vérification des données lieu
+                if($rueLieuDepart == null){
+                    $this->addFlash('danger', 'Veuillez saisir un lieu');
+                    return $this->redirectToRoute('evenement_detail', ['id' => $id]);
+                }
+                if($codePostalLieuDepart == null){
+                    $this->addFlash('danger', 'Une adresse doit avoir un code postal !');
+                    return $this->redirectToRoute('evenement_detail', ['id' => $id]);
+                }
+                if($villeLieuDepart == null){
+                    $this->addFlash('danger', 'Une adresse doit avoir une ville !');
+                    return $this->redirectToRoute('evenement_detail', ['id' => $id]);
+                }
+
+                //Création d'un lieu sur la base des champs saisis
+                $lieuDepartCustom = new Lieu();
+                $lieuDepartCustom->setNom($nomLieuDepart);
+                $lieuDepartCustom->setRue($rueLieuDepart);
+                $lieuDepartCustom->setRue2($rue2LieuDepart);
+                $lieuDepartCustom->setCodePostal($codePostalLieuDepart);
+                $lieuDepartCustom->setVille($villeLieuDepart);
+                $lieuDepartCustom->setClub(0);
+                $lieuDepartCustom->setList(0);
+
+                $entityManager->persist($lieuDepartCustom);
+                //$entityManager->flush();
+
+                $trajet->setLieuDepart($lieuDepartCustom);
+
             }
 
             //MAJ BDD
-            dd($trajet);
             $entityManager->persist($trajet);
             $entityManager->flush();
-            $this->addFlash('success', 'Etape ajoutée ! Les membres peuvent s\'inscrire');
+            $this->addFlash('success', 'Trajet ajouté ! Les membres peuvent réserver');
             return $this->redirectToRoute('evenement_detail', ['id' => $id]);
         }
 
@@ -197,7 +243,6 @@ class EvenementController extends AbstractController
             'trajets'=>$trajets,
             'etapeForm'=>$etapeForm->createView(),
             'trajetForm'=>$trajetForm->createView(),
-
         ]);
     }
 

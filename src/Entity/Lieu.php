@@ -69,6 +69,11 @@ class Lieu
      */
     private $trajets;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $list;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
@@ -232,6 +237,18 @@ class Lieu
                 $trajet->setLieuDepart(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getList(): ?bool
+    {
+        return $this->list;
+    }
+
+    public function setList(bool $list): self
+    {
+        $this->list = $list;
 
         return $this;
     }

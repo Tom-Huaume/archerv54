@@ -33,6 +33,7 @@ class LieuController extends AbstractController
         if($lieuForm->isSubmitted() && $lieuForm->isValid()){
 
             $lieu->setClub(0);
+            $lieu->setList(1);
             $entityManager->persist($lieu);
             $entityManager->flush();
 

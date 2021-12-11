@@ -105,6 +105,10 @@
     max-width: 25rem;
 }
 
+.input-choice-address{
+    max-width: 35rem;
+}
+
 /*____Formulaire Evenements____*/
 .input-inscr-event {
     max-width: 5rem;
